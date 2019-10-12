@@ -21,10 +21,10 @@
 export default {
   props : ['propsData'],
   methods : {
-    removeTodo: function(todoItem, index) {
+    removeTodo(todoItem, index) {
       this.$emit("deleteTodoItem", todoItem, index);
     },
-    toggleComplete : function(todoItem, index) {
+    toggleComplete(todoItem, index) {
       // 완료된 건들은 체크 완료 상태로 변경한다.
       this.$emit("toggleTodoItem", todoItem, index);
     }
