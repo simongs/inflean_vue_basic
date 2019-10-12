@@ -29,7 +29,7 @@ export default {
   components : {
     'modal' : Modal,
   },
-  data: function () {
+  data() {
     return {
       newTodoItem: "",
       showModal: false
@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     // save item
-    addTodo : function() {
+    addTodo() {
       if (this.newTodoItem !== '') {
         this.$emit('addTodoEmitEvent', this.newTodoItem);
         this.clearInput();
@@ -48,7 +48,7 @@ export default {
     },
 
     // clear inputbox
-    clearInput: function() {
+    clearInput() {
       this.newTodoItem = "";
     }
   }

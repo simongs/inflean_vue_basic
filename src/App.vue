@@ -19,7 +19,9 @@ import TodoList from './components/TodoList.vue'
 import TodoInput from './components/TodoInput.vue'
 
 export default {
-    data: function () {
+    
+    //data: function () {
+    data() {
       return {
         todoItems : []
       }  
@@ -31,18 +33,18 @@ export default {
         'TodoFooter' : TodoFooter
     }, 
     methods : {
-      addOneItem : function(newTodoItem) {
+      addOneItem(newTodoItem) {
         const obj = {completed: false, item: newTodoItem};
         localStorage.setItem(newTodoItem, JSON.stringify(obj));
         this.todoItems.push(obj);  
       }, 
 
-      deleteOneItem : function(todoItem, index) {
+      deleteOneItem(todoItem, index) {
         localStorage.removeItem(todoItem.item);
         this.todoItems.splice(index, 1); // index부터 1개를 지우겠다.
       }, 
 
-      toggleOneItem : function(todoItem, index) {
+      toggleOneItem(todoItem, index) {
         // 로컬스토리지 쪽은 업데이트 기능이 없다 (삭제 + 삽입)
         // (안티패턴이다) - 컨테이너로 내린 데이터가 다시 올라와서 컨테이너에서 수정되는 것은 좋지 않다.
         // todoItem.completed = !todoItem.completed;
@@ -51,7 +53,7 @@ export default {
         localStorage.removeItem(todoItem.item);
         localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
       },
-      deleteAllItem : function() {
+      deleteAllItem() {
         localStorage.clear();
         this.todoItems = [];
       }

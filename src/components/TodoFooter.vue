@@ -7,7 +7,7 @@
 <script>
 export default {
   methods : {
-    deleteAllDatas: function () {
+    deleteAllDatas() {
       this.$emit('deleteAllTodoItem');
     }
   }
