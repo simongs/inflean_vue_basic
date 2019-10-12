@@ -6,7 +6,7 @@
       <i class="fas fa-plus addBtn"></i>
     </span>
 
-    <modal v-if="showModal" @close="showModal = false">
+    <Modal v-if="showModal" @close="showModal = false">
     <!--
       you can use custom content here to overwrite
       default content
@@ -18,7 +18,7 @@
     <h3 slot="header">경고!<i class="fas fa-times closeModalBtn" @click="showModal = false"></i></h3>
     <h3 slot="body"></h3>
     <h3 slot="footer"></h3>
-  </modal>
+  </Modal>
   </div>
 </template>
 
@@ -27,7 +27,7 @@ import Modal from './common/Modal.vue'
 
 export default {
   components : {
-    'modal' : Modal,
+    Modal // 'Modal' : Modal,
   },
   data() {
     return {
