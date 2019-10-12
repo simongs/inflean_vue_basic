@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-      <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem.item" class="shadow"> 
+      <li v-for="(todoItem, index) in propsData" v-bind:key="todoItem.item" class="shadow"> 
         <!-- 완료 처리 -->
         <i class="fas fa-check checkBtn" v-bind:class="{checkBtnCompleted: todoItem.completed}" v-on:click="toggleComplete(todoItem, index)"></i>
 
@@ -19,39 +19,14 @@
 
 <script>
 export default {
-  // vue 라이프사이클이 있는데 그중에 인스턴스 생성 후 바로 호출되는 hook method
-  created: function () {
-    console.log("TodoList created called");
-    if (localStorage.length > 0) {
-      for (var i=0; i < localStorage.length; i++) {
-        if (localStorage.key(i) != 'loglevel:webpack-dev-server') {
-          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));  
-        }
-      }
-    }
-  },
-
-  data : function() {
-    return {
-      todoItems : []
-    }
-  },
-
+  props : ['propsData'],
   methods : {
     removeTodo: function(todoItem, index) {
-      console.log("remove");
-      console.log(todoItem);
-      console.log(index);
-      localStorage.removeItem(todoItem);
-      this.todoItems.splice(index, 1); // index부터 1개를 지우겠다.
+      this.$emit("deleteTodoItem", todoItem, index);
     },
     toggleComplete : function(todoItem, index) {
       // 완료된 건들은 체크 완료 상태로 변경한다.
-      todoItem.completed = !todoItem.completed;
-
-      // 로컬스토리지 쪽은 업데이트 기능이 없다 (삭제 + 삽입)
-      localStorage.removeItem(todoItem.item);
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+      this.$emit("toggleTodoItem", todoItem, index);
     }
   }
 
