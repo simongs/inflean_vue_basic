@@ -8,7 +8,7 @@
 export default {
   methods : {
     deleteAllDatas: function () {
-      localStorage.clear();
+      this.$emit('deleteAllTodoItem');
     }
   }
 }
