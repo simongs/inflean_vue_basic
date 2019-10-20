@@ -5,11 +5,14 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
+  
   methods : {
-    deleteAllDatas() {
-      this.$emit('deleteAllTodoItem');
-    }
+    ...mapMutations({
+      deleteAllDatas : 'deleteAllTodoItem'
+    })
   }
 }
 </script>
