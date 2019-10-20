@@ -24,6 +24,7 @@
 
 <script>
 import Modal from './common/Modal.vue'
+import { mapMutations } from 'vuex';
 
 export default {
   components : {
@@ -36,10 +37,12 @@ export default {
     }  
   },
   methods: {
+    
     // save item
     addTodo() {
       if (this.newTodoItem !== '') {
-        this.$emit('addTodoEmitEvent', this.newTodoItem);
+        //this.$emit('addTodoEmitEvent', this.newTodoItem);
+        this.$store.commit('addOneItem', this.newTodoItem)
         this.clearInput();
         this.showModal = false;
       } else {
